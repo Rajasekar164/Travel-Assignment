@@ -36,3 +36,11 @@
     width: 100%;
     padding: 10px;
 }
+
+.flight-card {
+    transition: transform 0.3s ease;
+}
+
+.flight-card:hover {
+    transform: translateY(-5px);
+}
