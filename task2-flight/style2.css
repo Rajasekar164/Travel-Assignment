@@ -1,0 +1,38 @@
+:root {
+    --brand-color: #123456;
+    --brand-light: #eaf2f8;
+}
+
+.brand-bg {
+    background-color: var(--brand-color);
+}
+
+.brand-button {
+    background-color: var(--brand-color);
+    color: white;
+}
+
+.brand-button:hover {
+    background-color: #0b263e;
+    color: white;
+}
+
+.flight-card {
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.flight-card:hover {
+    transform: translateY(-3px);
+}
+
+.flight-card {
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.brand-button {
+    width: 100%;
+    padding: 10px;
+}
