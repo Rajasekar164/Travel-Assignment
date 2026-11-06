@@ -61,3 +61,11 @@ button {
         grid-template-columns: 1fr;
     }
 }
+
+.hotel-card {
+    transition: transform 0.3s ease;
+}
+
+.hotel-card:hover {
+    transform: translateY(-5px);
+}
