@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,12 +7,11 @@
     <title>Flight Search</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
 </head>
 <body>
 
-    <nav class="navbar navbar-dark brand-bg">
+<nav class="navbar navbar-dark brand-bg">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">TravelGo</a>
 
@@ -27,27 +27,37 @@
 <div class="container-fluid mt-4">
     <div class="row">
 
-        <!-- Sidebar -->
+        <!-- Desktop Filters -->
         <aside class="col-md-3 d-none d-md-block">
             <div class="card p-3">
                 <h5>Flight Filters</h5>
-                <label class="mt-3">Price Range</label>
-                <input type="range" class="form-range">
+
+                <label>Maximum Price:
+                    ₹<span data-price-output>8000</span>
+                </label>
+
+                <input type="range" class="form-range"
+                       min="3000" max="8000" value="8000"
+                       step="100" data-price>
+
+                <h6 class="mt-3">Maximum Stops</h6>
+                <select class="form-select" data-stops>
+                    <option value="2">All Stops</option>
+                    <option value="1">1 Stop</option>
+                    <option value="0">Non-stop</option>
+                </select>
 
                 <h6 class="mt-3">Airlines</h6>
-                <div>
-                    <input type="checkbox"> IndiGo
-                </div>
-                <div>
-                    <input type="checkbox"> Air India
-                </div>
-                <div>
-                    <input type="checkbox"> Vistara
-                </div>
+
+                <div><input type="checkbox" data-airline="IndiGo" checked> IndiGo</div>
+                <div><input type="checkbox" data-airline="Air India" checked> Air India</div>
+                <div><input type="checkbox" data-airline="SpiceJet" checked> SpiceJet</div>
+                <div><input type="checkbox" data-airline="Vistara" checked> Vistara</div>
+                <div><input type="checkbox" data-airline="Akasa Air" checked> Akasa Air</div>
             </div>
         </aside>
 
-        <!-- Mobile Offcanvas -->
+        <!-- Mobile Filters -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebar">
             <div class="offcanvas-header">
                 <h5>Flight Filters</h5>
@@ -56,58 +66,55 @@
             </div>
 
             <div class="offcanvas-body">
-                <p>Price Range</p>
-                <input type="range" class="form-range">
+                <label>Maximum Price:
+                    ₹<span data-price-output>8000</span>
+                </label>
 
-                <h6>Airlines</h6>
-                <p><input type="checkbox"> IndiGo</p>
-                <p><input type="checkbox"> Air India</p>
-                <p><input type="checkbox"> Vistara</p>
+                <input type="range" class="form-range"
+                       min="3000" max="8000" value="8000"
+                       step="100" data-price>
+
+                <h6 class="mt-3">Maximum Stops</h6>
+                <select class="form-select" data-stops>
+                    <option value="2">All Stops</option>
+                    <option value="1">1 Stop</option>
+                    <option value="0">Non-stop</option>
+                </select>
+
+                <h6 class="mt-3">Airlines</h6>
+
+                <div><input type="checkbox" data-airline="IndiGo" checked> IndiGo</div>
+                <div><input type="checkbox" data-airline="Air India" checked> Air India</div>
+                <div><input type="checkbox" data-airline="SpiceJet" checked> SpiceJet</div>
+                <div><input type="checkbox" data-airline="Vistara" checked> Vistara</div>
+                <div><input type="checkbox" data-airline="Akasa Air" checked> Akasa Air</div>
             </div>
         </div>
 
-        <!-- Flight Cards -->
+        <!-- Flight Results -->
         <section class="col-md-9">
-            <h2 class="mb-4">Available Flights</h2>
+            <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+                <h2>Available Flights</h2>
 
-            <div class="row g-3">
+                <select class="form-select" data-sort style="width: 220px;">
+                    <option value="default">Sort By</option>
+                    <option value="price">Lowest Price</option>
+                    <option value="departure">Earliest Departure</option>
+                </select>
+            </div>
 
-                <div class="col-12">
-                    <div class="card flight-card p-3">
-                        <h5>IndiGo Airlines</h5>
-                        <p>Bangalore → Delhi</p>
-                        <p>06:00 AM - 08:45 AM</p>
-                        <h5>₹4,500</h5>
-                        <button class="btn brand-button">Book Flight</button>
-                    </div>
-                </div>
+            <p id="flightCount"></p>
 
-                <div class="col-12">
-                    <div class="card flight-card p-3">
-                        <h5>Air India</h5>
-                        <p>Chennai → Mumbai</p>
-                        <p>10:30 AM - 12:45 PM</p>
-                        <h5>₹5,200</h5>
-                        <button class="btn brand-button">Book Flight</button>
-                    </div>
-                </div>
-
-                <div class="col-12">
-                    <div class="card flight-card p-3">
-                        <h5>Vistara Airlines</h5>
-                        <p>Hyderabad → Bangalore</p>
-                        <p>02:00 PM - 03:15 PM</p>
-                        <h5>₹3,800</h5>
-                        <button class="btn brand-button">Book Flight</button>
-                    </div>
-                </div>
-
+            <div class="row g-3" id="flightList">
+                <!-- JavaScript displays flight cards here -->
             </div>
         </section>
 
     </div>
 </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="../Flight-search/main.js"></script>
+
 </body>
 </html>
